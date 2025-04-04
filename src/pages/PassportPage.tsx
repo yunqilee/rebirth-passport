@@ -16,6 +16,14 @@ export default function PassportPage({ userInfo, country }: any) {
   return (
     <div className="p-4 max-w-xl mx-auto">
       <Passport userInfo={userInfo} country={country} />
+      <div className="mt-6 text-center">
+        <Link
+          to="/"
+          className="text-sm text-blue-600 hover:underline border border-blue-500 px-3 py-1 rounded"
+        >
+          ← Back to Home
+        </Link>
+      </div>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import PassportPage from "./pages/PassportPage";
+import Loading from "./pages/Loading";
 
 export default function App() {
   const [userInfo, setUserInfo] = useState<any>(null);
@@ -19,6 +20,7 @@ export default function App() {
           path="/passport"
           element={<PassportPage userInfo={userInfo} country={country} />}
         />
+        <Route path="/loading" element={<Loading />} />
       </Routes>
     </Router>
   );

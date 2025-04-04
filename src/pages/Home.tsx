@@ -21,7 +21,7 @@ export default function Home({ setUserInfo, setCountry }: any) {
       expiryDate: expiryDate.toISOString().split("T")[0],
     });
     setCountry(randomCountry);
-    navigate("/passport");
+    navigate("/loading");
   };
 
   return (
