@@ -1,14 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import InputForm from "../components/InputForm";
-import { countries } from "../data/countries";
+import { selectCountryByPopulation } from "../utils/selectCountryByPopulation";
 import { generatePassportNumber } from "../utils/generatePassportNumber";
 
 export default function Home({ setUserInfo, setCountry }: any) {
   const navigate = useNavigate();
 
   const handleRebirth = (data: any) => {
-    const randomCountry =
-      countries[Math.floor(Math.random() * countries.length)];
+    const randomCountry = selectCountryByPopulation();
     const passportNumber = generatePassportNumber(randomCountry.code);
     const issueDate = new Date();
     const expiryDate = new Date();

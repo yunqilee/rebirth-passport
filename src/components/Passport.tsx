@@ -20,15 +20,24 @@ interface Props {
 export default function Passport({ userInfo, country }: Props) {
   return (
     <div
+      id="passport-card"
       className="relative border rounded-lg p-6 shadow-md max-w-md mx-auto overflow-hidden"
       style={{
-        backgroundImage:
-          "radial-gradient(circle at top left, #f0f4f8, #ffffff)",
+        backgroundImage: `
+          radial-gradient(circle at top left, #f0f4f8, #ffffff),
+          url("https://www.transparenttextures.com/patterns/white-wall-3.png")
+        `,
+        backgroundColor: "#ffffff",
+        backgroundRepeat: "repeat",
+        backgroundSize: "cover",
       }}
     >
       <h2 className="text-xl font-bold mb-4">🛂 Passport</h2>
       <div className="flex items-start">
-        <div className="w-24 h-32 bg-gray-200 rounded flex items-center justify-center text-sm text-gray-500 flex-shrink-0">
+        <div
+          className="w-24 h-32 rounded flex items-center justify-center text-sm flex-shrink-0"
+          style={{ backgroundColor: "rgb(229, 231, 235)" }}
+        >
           photo
         </div>
 
