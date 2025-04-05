@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import PassportPage from "./pages/PassportPage";
 import Loading from "./pages/Loading";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App() {
   const [userInfo, setUserInfo] = useState<any>(null);
@@ -22,6 +23,7 @@ export default function App() {
         />
         <Route path="/loading" element={<Loading />} />
       </Routes>
+      <Analytics />
     </Router>
   );
 }
