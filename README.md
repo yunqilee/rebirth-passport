@@ -1,54 +1,52 @@
-# React + TypeScript + Vite
+# 🌀 Rebirth Passport
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a small **for-fun project** inspired by the idea of **rebirth** — what if you could be randomly born in another country, with a brand new identity and a fresh passport?
 
-Currently, two official plugins are available:
+It's a playful little experiment that also gave me a chance to practice **vibe coding**, and work with tools I enjoy:  
+**React + TypeScript + Tailwind CSS**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🌍 What it does
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Lets users input their name, gender, and birthday
+- Randomly assigns a new nationality (weighted by real-world population)
+- Generates a mock passport with:
+  - Emblem
+  - Passport number
+  - Validity dates
+- Allows you to **save it as an image** via screenshot
+- Includes a little spinning-earth animation to mark the moment of rebirth
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠️ Tech Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
+- **html2canvas** for image export
+- **Vercel** for deployment
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---
+
+## 🚀 Try it live
+
+Coming soon at: [rebirth-passport.vercel.app](https://rebirth-passport.vercel.app)  
+(Once deployed via Vercel)
+
+---
+
+## 🎯 Why I made this
+
+I just thought the concept of "rebirth" — being randomly dropped into the world with new attributes — was a fun and philosophical idea to play with. And it was a great excuse to vibe code for a night and touch some TypeScript.
+
+---
+
+## 📷 Example
+
+![example-passport](./screenshot.png)
+
+---
+
+> Made with curiosity ✨ and deployed for fun.
