@@ -1,8 +1,70 @@
+import { useEffect, useRef, useState } from "react";
 import Passport from "../components/Passport";
 import { Link } from "react-router-dom";
 import html2canvas from "html2canvas";
+import { countries } from "../data/countries";
 
 export default function PassportPage({ userInfo, country }: any) {
+  const [showFireworks, setShowFireworks] = useState(true);
+  const fireworksRef = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowFireworks(false), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const canvas = fireworksRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles: any[] = [];
+    const colors = ["#FF6B6B", "#FFD93D", "#6BCB77", "#4D96FF"];
+
+    for (let i = 0; i < 100; i++) {
+      particles.push({
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        radius: Math.random() * 3 + 1,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        speedX: (Math.random() - 0.5) * 6,
+        speedY: (Math.random() - 0.5) * 6,
+        alpha: 1,
+      });
+    }
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.alpha;
+        ctx.fill();
+        p.x += p.speedX;
+        p.y += p.speedY;
+        p.alpha -= 0.01;
+      });
+      ctx.globalAlpha = 1;
+      particles = particles.filter((p) => p.alpha > 0);
+      if (particles.length > 0) requestAnimationFrame(animate);
+    };
+    animate();
+  }, [showFireworks]);
+
+  const getCountryProbability = (code: string) => {
+    const total = countries.reduce((sum, c) => sum + c.population, 0);
+    const target = countries.find((c) => c.code === code);
+    if (!target) return null;
+    return ((target.population / total) * 100).toFixed(2);
+  };
+
+  const probability = getCountryProbability(country.code);
+
   if (!userInfo || !country) {
     return (
       <div className="p-4 text-center">
@@ -52,6 +114,22 @@ export default function PassportPage({ userInfo, country }: any) {
 
   return (
     <div className="p-4 max-w-xl mx-auto">
+      <div className="text-center text-2xl font-bold mb-2">
+        🎉 Congrats, you rebirthed to {country.flag} {country.name}!
+      </div>
+      {probability && (
+        <div className="text-left text-sm text-gray-600 mb-4 max-w-md mx-auto leading-relaxed">
+          Do you know? Based on population distribution of this app, you had a
+          <span className="font-semibold text-blue-700"> {probability}% </span>
+          chance of being reborn in this country.
+        </div>
+      )}
+
+      <canvas
+        ref={fireworksRef}
+        className="fixed top-0 left-0 w-screen h-screen pointer-events-none z-10"
+      />
+
       <Passport userInfo={userInfo} country={country} />
       <div className="mt-6 text-center space-x-4">
         <Link
