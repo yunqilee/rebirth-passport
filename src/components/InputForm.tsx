@@ -10,12 +10,13 @@ export default function InputForm({ onRebirth }: Props) {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("Male");
   const [birthday, setBirthday] = useState("");
+  const [photo, setPhoto] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !birthday) return;
 
-    onRebirth({ name, gender, birthday });
+    onRebirth({ name, gender, birthday, photo });
   };
 
   return (
@@ -52,6 +53,39 @@ export default function InputForm({ onRebirth }: Props) {
           value={birthday}
           onChange={(e) => setBirthday(e.target.value)}
           required
+        />
+      </div>
+
+      <label className="block text-sm font-medium mb-1">Upload Photo</label>
+
+      <div className="flex items-center space-x-3">
+        <button
+          type="button"
+          onClick={() => document.getElementById("photoInput")?.click()}
+          className="bg-gray-200 hover:bg-gray-300 text-sm text-gray-800 px-3 py-2 rounded"
+        >
+          📷 Choose File
+        </button>
+
+        {photo && (
+          <span className="text-xs text-green-600">✔️ Photo uploaded</span>
+        )}
+
+        <input
+          id="photoInput"
+          type="file"
+          accept="image/*"
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file) {
+              const reader = new FileReader();
+              reader.onloadend = () => {
+                setPhoto(reader.result as string);
+              };
+              reader.readAsDataURL(file);
+            }
+          }}
+          className="hidden"
         />
       </div>
 

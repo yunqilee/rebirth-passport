@@ -8,6 +8,7 @@ interface Props {
     passportNumber: string;
     issueDate: string;
     expiryDate: string;
+    photo?: string;
   };
   country: {
     name: string;
@@ -34,10 +35,20 @@ export default function Passport({ userInfo, country }: Props) {
       <h2 className="text-xl font-bold mb-4">🛂 Passport</h2>
       <div className="flex items-start">
         <div
-          className="w-24 h-32 rounded flex items-center justify-center text-sm flex-shrink-0"
+          className="w-24 h-32 rounded overflow-hidden flex items-center justify-center"
           style={{ backgroundColor: "rgb(229, 231, 235)" }}
         >
-          photo
+          {userInfo.photo ? (
+            <img
+              src={userInfo.photo}
+              alt="avatar"
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <span style={{ color: "rgb(107, 114, 128)", fontSize: "0.875rem" }}>
+              photo
+            </span>
+          )}
         </div>
 
         <div className="text-sm ml-15 flex-1">
