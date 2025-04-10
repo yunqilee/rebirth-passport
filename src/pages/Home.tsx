@@ -24,8 +24,12 @@ export default function Home({ setUserInfo, setCountry }: any) {
   };
 
   return (
-    <div className="p-4 max-w-xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">🌀 Rebirth: Your New Passport</h1>
+    <div className="p-4">
+      <div className="max-w-md mx-auto text-center">
+        <h1 className="text-2xl font-bold mb-4">
+          🌀 Rebirth: Your New Passport
+        </h1>
+      </div>
       <InputForm onRebirth={handleRebirth} />
     </div>
   );

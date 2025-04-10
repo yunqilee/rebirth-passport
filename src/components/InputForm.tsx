@@ -20,55 +20,64 @@ export default function InputForm({ onRebirth }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 mb-6">
-      <div>
-        <label className="block text-sm font-medium mb-1">Name</label>
-        <input
-          type="text"
-          className="w-full border rounded px-3 py-2"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-      </div>
+    <div className="max-w-md mx-auto mt-4 p-6 bg-white rounded-lg shadow-md space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium mb-1">Name</label>
+          <input
+            type="text"
+            className="w-full border rounded px-3 py-2"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
 
-      <div>
-        <label className="block text-sm font-medium mb-1">Gender</label>
-        <select
-          className="w-full border rounded px-3 py-2"
-          value={gender}
-          onChange={(e) => setGender(e.target.value)}
-        >
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
+        <div>
+          <label className="block text-sm font-medium mb-1">Gender</label>
+          <select
+            className="w-full border rounded px-3 py-2"
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+          >
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
 
-      <div>
-        <label className="block text-sm font-medium mb-1">Birthday</label>
-        <input
-          type="date"
-          className="w-full border rounded px-3 py-2"
-          value={birthday}
-          onChange={(e) => setBirthday(e.target.value)}
-          required
-        />
-      </div>
+        <div>
+          <label className="block text-sm font-medium mb-1">Birthday</label>
+          <input
+            type="date"
+            className="w-full border rounded px-3 py-2"
+            value={birthday}
+            onChange={(e) => setBirthday(e.target.value)}
+            required
+          />
+        </div>
 
-      <label className="block text-sm font-medium mb-1">Upload Photo</label>
+        <div className="flex justify-between items-center">
+          <button
+            type="button"
+            onClick={() => document.getElementById("photoInput")?.click()}
+            className="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm px-4 py-2 rounded border"
+          >
+            📷 {photo ? "Change Photo" : "Upload Photo"}
+          </button>
 
-      <div className="flex items-center space-x-3">
-        <button
-          type="button"
-          onClick={() => document.getElementById("photoInput")?.click()}
-          className="bg-gray-200 hover:bg-gray-300 text-sm text-gray-800 px-3 py-2 rounded"
-        >
-          📷 Choose File
-        </button>
+          <button
+            type="submit"
+            className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded font-medium"
+          >
+            🔁 Rebirth!
+          </button>
+        </div>
 
         {photo && (
-          <span className="text-xs text-green-600">✔️ Photo uploaded</span>
+          <p className="text-sm text-green-600 mt-1">
+            ✔️ Photo uploaded successfully!
+          </p>
         )}
 
         <input
@@ -87,14 +96,7 @@ export default function InputForm({ onRebirth }: Props) {
           }}
           className="hidden"
         />
-      </div>
-
-      <button
-        type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-      >
-        🔁 Rebirth!
-      </button>
-    </form>
+      </form>
+    </div>
   );
 }
