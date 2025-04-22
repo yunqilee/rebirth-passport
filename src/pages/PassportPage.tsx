@@ -14,6 +14,8 @@ export default function PassportPage({ userInfo, country }: any) {
   }, []);
 
   useEffect(() => {
+    if (!showFireworks) return;
+
     const canvas = fireworksRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
